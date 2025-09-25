@@ -1,1 +1,3 @@
-export class CreateHabitDto {}
+export class CreateHabitDto {
+    name: string;
+}
