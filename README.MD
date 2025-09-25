@@ -1,8 +1,9 @@
-npm i -g @nestjs/cli
+pnpm i -g @nestjs/cli
 
 
 cd api
-npm i --save dotenv
+pnpm i --save dotenv
 
 
+--Crear nueva api dentro de api
 nest new api
