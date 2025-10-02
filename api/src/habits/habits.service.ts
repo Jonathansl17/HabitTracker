@@ -55,8 +55,11 @@ export class HabitsService {
     return data;
   }
 
-  async remove(id: number) {
-    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).delete().eq('id', id);
+  async remove(id: number): Promise<string> {
+    const { data, error } = await supabase
+    .from(TABLE_NAMES.HABITS)
+    .delete()
+    .eq('id', id);
     if (error) {
       throw new Error(`Error removing habit: ${error.message}`);
     }
