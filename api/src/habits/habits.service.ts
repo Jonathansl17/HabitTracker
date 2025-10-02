@@ -1,20 +1,16 @@
 import { Injectable } from '@nestjs/common'; 
 import { CreateHabitDto } from './dto/create-habit.dto';
 import { UpdateHabitDto } from './dto/update-habit.dto';
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
-dotenv.config();
+import { createSupabaseClient } from 'utils/supabase-utils';
+import { TABLE_NAMES } from 'utils/supabase-utils';
 
-const SUPABASE_URL = process.env.SUPABASE_URL ?? '';
-const SUPABASE_SECRET = process.env.SUPABASE_SECRET ?? '';
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET);
+const supabase = createSupabaseClient();
 
 
 @Injectable()
 export class HabitsService {
   async create(createHabitDto: CreateHabitDto) {
-    const { data, error } = await supabase.from('habits').insert(createHabitDto);
+    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).insert(createHabitDto);
     if (error) {
       throw new Error(`Error creating habit: ${error.message}`);
     }
@@ -22,22 +18,34 @@ export class HabitsService {
   }
 
   async findAll() {
-    const { data, error } = await supabase.from('habits').select('*');
+    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).select('*');
     if (error) {
       throw new Error(`Error fetching habits: ${error.message}`);
     }
     return data;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} habit`;
+  async findOne(id: number) {
+    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).select('*').eq('id', id);
+    if (error) {
+      throw new Error(`Error fetching habit: ${error.message}`);
+    }
+    return data; 
   }
 
-  update(id: number, updateHabitDto: UpdateHabitDto) {
-    return `This action updates a #${id} habit`;
+  async update(id: number, updateHabitDto: UpdateHabitDto) {
+    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).update(updateHabitDto).eq('id', id);
+    if (error) {
+      throw new Error(`Error updating habit: ${error.message}`);
+    }
+    return 'Habit updated successfully';
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} habit`;
+  async remove(id: number) {
+    const { data, error } = await supabase.from(TABLE_NAMES.HABITS).delete().eq('id', id);
+    if (error) {
+      throw new Error(`Error removing habit: ${error.message}`);
+    }
+    return 'Habit removed successfully';
   }
 }
