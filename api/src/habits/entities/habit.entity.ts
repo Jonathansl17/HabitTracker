@@ -1,1 +1,4 @@
-export class Habit {}
+export class Habit {
+    id: number;
+    name: string;
+}
