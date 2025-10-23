@@ -41,7 +41,7 @@ const mod = __turbopack_context__.x("next/dist/server/app-render/after-task-asyn
 
 module.exports = mod;
 }),
-"[project]/app/api/todos/[id]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"[project]/app/api/habits/[id]/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -92,4 +92,4 @@ async function DELETE(request, { params }) {
 }),
 ];
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__8e1104a8._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__ec605187._.js.map

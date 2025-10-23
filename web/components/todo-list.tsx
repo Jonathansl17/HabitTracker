@@ -31,7 +31,7 @@ export function TodoList() {
   const fetchTodos = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/habits")
       if (!response.ok) throw new Error("Error al cargar las tareas")
       const data = await response.json()
       setTodos(data)
@@ -52,7 +52,7 @@ export function TodoList() {
 
     try {
       setIsAdding(true)
-      const response = await fetch("/api/todos", {
+      const response = await fetch("/api/habits", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newTodoName }),
@@ -80,7 +80,7 @@ export function TodoList() {
 
   const toggleTodo = async (id: string, completed: boolean) => {
     try {
-      const response = await fetch(`/api/todos/${id}`, {
+      const response = await fetch(`/api/habits/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ completed: !completed }),
@@ -100,11 +100,9 @@ export function TodoList() {
 
   const deleteTodo = async (id: string) => {
     try {
-      const response = await fetch(`/api/todos/${id}`, {
+      const response = await fetch(`/api/habits/${id}`, {
         method: "DELETE",
       })
-
-      if (!response.ok) throw new Error("Error al eliminar la tarea")
 
       setTodos(todos.filter((todo) => todo.id !== id))
       toast({
