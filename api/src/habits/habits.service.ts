@@ -30,7 +30,7 @@ export class HabitsService {
     return data;
   }
 
-  async findOne(id: number): Promise<Habit> {
+  async findOne(id: string): Promise<Habit> {
     const { data, error } = await supabase
     .from(TABLE_NAMES.HABITS)
     .select('*')
@@ -42,7 +42,7 @@ export class HabitsService {
     return data; 
   }
 
-  async update(id: number, updateHabitDto: UpdateHabitDto) {
+  async update(id: string, updateHabitDto: UpdateHabitDto) {
     const { data, error } = await supabase
     .from(TABLE_NAMES.HABITS)
     .update(updateHabitDto)
@@ -55,7 +55,7 @@ export class HabitsService {
     return data;
   }
 
-  async remove(id: number): Promise<string> {
+  async remove(id: string): Promise<string> {
     const { data, error } = await supabase
     .from(TABLE_NAMES.HABITS)
     .delete()

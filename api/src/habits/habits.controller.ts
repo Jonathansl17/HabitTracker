@@ -32,20 +32,20 @@ export class HabitsController {
   @ApiOkResponse({ type: Habit })
   findOne(@Param('id') id: string) {
     this.logger.log(`Finding habit with id: ${id}`,'HabitsController');
-    return this.habitsService.findOne(+id);
+    return this.habitsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: Habit })
   update(@Param('id') id: string, @Body() updateHabitDto: UpdateHabitDto) {
     this.logger.log(`Updating habit with id: ${id}`,'HabitsController');
-    return this.habitsService.update(+id, updateHabitDto);
+    return this.habitsService.update(id, updateHabitDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: Habit })
   remove(@Param('id') id: string) {
     this.logger.log(`Removing habit with id: ${id}`,'HabitsController');
-    return this.habitsService.remove(+id);
+    return this.habitsService.remove(id);
   }
 }
