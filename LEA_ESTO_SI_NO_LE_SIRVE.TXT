@@ -1,0 +1,4 @@
+Recuerde crear el .env dentro de la carpeta api con sus credenciales de supabase
+
+SUPABASE_URL = jaja tontito
+SUPABASE_SECRET = sico ah
